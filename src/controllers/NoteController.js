@@ -60,6 +60,33 @@ class NoteController {
       });
     }
   }
+
+  async getNoteById(req, res) {
+    // gets the id from url
+    const {
+      id
+    } = req.params;
+
+    /**
+     * tries to find the note 
+     */
+    try {
+      const note = await Note.findById(id);
+
+      if (!note) {
+        return res.status(404).json({
+          msg: "Nota não encontrada"
+        });
+      }
+
+      res.status(200).json(note);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        msg: "Ocorreu um erro."
+      });
+    }
+  }
 }
 
 module.exports = new NoteController();
