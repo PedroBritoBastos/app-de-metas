@@ -42,6 +42,24 @@ class NoteController {
       msg: "nota criada com sucesso!"
     });
   }
+
+  async getAll(req, res) {
+    /**
+     * try to get all notes from the database
+     */
+    try {
+      const notes = await Note.find();
+      res.status(200).json({
+        msg: "Todas as notas recuperadas com sucesso!",
+        notes: notes
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        msg: "Ocorreu um erro ao buscar as notas."
+      });
+    }
+  }
 }
 
 module.exports = new NoteController();
