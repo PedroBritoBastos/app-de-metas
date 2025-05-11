@@ -16,7 +16,7 @@ class App {
   }
 
   routes() {
-    this.app.use('/notes/create', noteRoutes);
+    this.app.use('/', noteRoutes);
   }
 }
 
